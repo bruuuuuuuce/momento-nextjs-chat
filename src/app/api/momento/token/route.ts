@@ -13,7 +13,7 @@ const authClient = new AuthClient({
 })
 
 export async function GET(request: Request) {
-    const generateAuthTokenResponse = await authClient.generateAuthToken(AllDataReadWrite, ExpiresIn.seconds(5));
+    const generateAuthTokenResponse = await authClient.generateAuthToken(AllDataReadWrite, ExpiresIn.minutes(5));
 
     if (generateAuthTokenResponse instanceof GenerateAuthToken.Success) {
         return new Response(generateAuthTokenResponse.authToken);
