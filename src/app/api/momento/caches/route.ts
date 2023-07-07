@@ -11,7 +11,6 @@ const cacheClient = new CacheClient({
     }),
     defaultTtlSeconds: 60,
     configuration: Configurations.Laptop.v1()
-
 })
 
 export async function GET(request: Request) {

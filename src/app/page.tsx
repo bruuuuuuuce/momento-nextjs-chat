@@ -1,7 +1,7 @@
 "use client"
 
 import {useEffect, useState} from "react";
-import {listCaches} from "@/utils/momento-web";
+import {clearCurrentClient, listCaches} from "@/utils/momento-web";
 import ChatRoom from "@/app/pages/chat-room";
 
 
@@ -16,6 +16,15 @@ export default function Home() {
     useEffect(() =>{
         listCaches().then((c) => setCaches(c))
     }, [])
+
+    const leaveChatRoom = () => {
+        clearCurrentClient();
+        setChatRoomSelected(false);
+        setUsernameSelected(false);
+        setCacheName("");
+        setTopic("");
+        setUsername("");
+    }
 
     if (!chatRoomSelected || !cacheName) {
         return (
@@ -70,7 +79,7 @@ export default function Home() {
 
 
   return (
-      <ChatRoom topicName={topic} cacheName={cacheName} username={username} />
+      <ChatRoom topicName={topic} cacheName={cacheName} username={username} onLeave={leaveChatRoom} />
   )
 
 }
