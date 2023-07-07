@@ -12,6 +12,8 @@ const authClient = new AuthClient({
     }),
 })
 
+console.log("auth client built")
+
 export async function GET(request: Request) {
     console.log("request", request);
     const minTilExpire = ExpiresIn.minutes(5);
