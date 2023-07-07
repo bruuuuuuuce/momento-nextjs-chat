@@ -115,7 +115,7 @@ async function publish(cacheName: string, topicName: string, message: string) {
             console.log("token has expired, going to refresh subscription and retry publish")
             clearCurrentClient();
             await subscribeToTopic(cacheName, topicName, onItemCb, onErrorCb);
-            await topicClient.publish(cacheName, topicName, message);
+            await publish(cacheName, topicName, message);
         } else {
             console.error("failed to publish to topic", resp);
         }
