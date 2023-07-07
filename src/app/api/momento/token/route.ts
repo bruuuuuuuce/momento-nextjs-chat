@@ -21,7 +21,11 @@ export async function GET(request: Request) {
     const generateAuthTokenResponse = await authClient.generateAuthToken(AllDataReadWrite, minTilExpire);
 
     if (generateAuthTokenResponse instanceof GenerateAuthToken.Success) {
-        return new Response(generateAuthTokenResponse.authToken);
+        return new Response(generateAuthTokenResponse.authToken, {
+            headers: {
+                'Cache-Control': 's-maxage=60'
+            }
+        });
     } else if (generateAuthTokenResponse instanceof  GenerateAuthToken.Error) {
         throw new Error(generateAuthTokenResponse.message())
     }
