@@ -42,6 +42,7 @@ type MomentoClients = {
 
 async function getNewWebClients(): Promise<MomentoClients> {
     webTopicClient = undefined;
+    // we don't want to cache the token, since it will expire in 5 min
     const fetchResp = await fetch(window.location.origin + '/api/momento/token', { cache: 'no-store' });
     const token = await fetchResp.text()
     const topicClient = new TopicClient({
