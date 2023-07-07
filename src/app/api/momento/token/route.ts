@@ -23,7 +23,7 @@ export async function GET(request: Request) {
     if (generateAuthTokenResponse instanceof GenerateAuthToken.Success) {
         return new Response(generateAuthTokenResponse.authToken, {
             headers: {
-                'Cache-Control': 's-maxage=60'
+                'Cache-Control': 'no-cache'
             }
         });
     } else if (generateAuthTokenResponse instanceof  GenerateAuthToken.Error) {
